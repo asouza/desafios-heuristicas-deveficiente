@@ -8,6 +8,10 @@ public class Cliente {
 		super();
 		this.cpf = cpf;
 	}
-	
+
+
+	public String getCpf() {
+		return cpf;
+	}
 	
 }
