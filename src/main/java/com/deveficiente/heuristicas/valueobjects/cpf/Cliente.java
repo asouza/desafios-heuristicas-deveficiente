@@ -4,14 +4,14 @@ public class Cliente {
 
 	private String cpf;
 
-	public Cliente(String cpf) {
+	public Cliente(CPF cpf) {
 		super();
-		this.cpf = cpf;
+		this.cpf = cpf.getCpfSemFormatacao();
 	}
 
 
-	public String getCpf() {
-		return cpf;
+	public CPF getCpf() {
+		return CPF.criaSemFormatacao(cpf);
 	}
 	
 }
