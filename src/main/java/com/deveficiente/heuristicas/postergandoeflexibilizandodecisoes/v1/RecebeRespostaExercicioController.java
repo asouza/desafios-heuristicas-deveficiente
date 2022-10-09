@@ -1,5 +1,7 @@
 package com.deveficiente.heuristicas.postergandoeflexibilizandodecisoes.v1;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,13 +10,15 @@ public class RecebeRespostaExercicioController {
 
 	private RespostaRepository respostaRepository;
 	private ExercicioRepository exercicioRepository;
+	private AmazonSQS sqs;
 
 	public RecebeRespostaExercicioController(
 			RespostaRepository respostaRepository,
-			ExercicioRepository exercicioRepository) {
+			ExercicioRepository exercicioRepository, AmazonSQS amazonSQS) {
 		super();
 		this.respostaRepository = respostaRepository;
 		this.exercicioRepository = exercicioRepository;
+		this.sqs = amazonSQS;
 	}
 
 	@PostMapping("/recebe-resposta/v1")
@@ -35,6 +39,7 @@ public class RecebeRespostaExercicioController {
 		 * a mesma preocupação que foi relatada neste texto. 
 		 * 
 		 */
-
+		Map<String, Object> infosNecessariasParaAnalise = Map.of("uuid",novaResposta.getUuid(),"texto",novaResposta.getTexto());
+		this.sqs.send(infosNecessariasParaAnalise);
 	}
 }

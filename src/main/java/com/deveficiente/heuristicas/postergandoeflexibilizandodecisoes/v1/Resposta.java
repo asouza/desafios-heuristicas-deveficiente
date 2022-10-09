@@ -16,5 +16,13 @@ public class Resposta {
 		this.texto = texto;
 		this.uuid = UUID.randomUUID();
 	}
+	
+	public UUID getUuid() {
+		return uuid;
+	}
+	
+	public String getTexto() {
+		return texto;
+	}
 
 }
