@@ -1,4 +1,4 @@
-package com.deveficiente.heuristicas.postergandoeflexibilizandodecisoes.indexarconteudo.v1;
+package com.deveficiente.heuristicas.postergandoeflexibilizandodecisoes.indexarconteudo.v2;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class NovaAtividadeController {
 
 	private AtividadeRepository atividadeRepository;
+	private IndexadorAtividade indexadorAtividade;
 
-	public NovaAtividadeController(AtividadeRepository atividadeRepository) {
+	public NovaAtividadeController(AtividadeRepository atividadeRepository,
+			IndexadorAtividade indexadorAtividade) {
 		super();
 		this.atividadeRepository = atividadeRepository;
+		this.indexadorAtividade = indexadorAtividade;
 	}
 
 	@PostMapping("nova-atividade/v1")
@@ -27,5 +30,6 @@ public class NovaAtividadeController {
 		 * Como expressar isso no código?
 		 */
 		
+		indexadorAtividade.indexa(novaAtividade);
 	}
 }
