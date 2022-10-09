@@ -10,6 +10,7 @@ public class PosicaoAtividade {
 	}
 
 	public int aPartirDeDeterminadoIndice(int indiceInicialNecessario) {
+		//E se chegar negativo, vale? Claro que não. 
 		return this.indiceOriginal + indiceInicialNecessario;
 	}
 	
