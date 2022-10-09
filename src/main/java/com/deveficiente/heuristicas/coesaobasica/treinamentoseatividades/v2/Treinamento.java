@@ -14,10 +14,10 @@ public class Treinamento {
 		this.titulo = titulo;
 	}
 
-	public Optional<Integer> posicaoAtividade(String titulo) {
+	public Optional<PosicaoAtividade> posicaoAtividade(String titulo) {
 		int posicao = this.titulosAtividades.indexOf(titulo);
-		if(posicao > -1) {
-			return Optional.of(posicao);
+		if (posicao > -1) {
+			return Optional.of(new PosicaoAtividade(posicao));
 		}
 		return Optional.empty();
 	}
@@ -25,25 +25,30 @@ public class Treinamento {
 	public void adicionaTituloAtividade(String titulo) {
 		this.titulosAtividades.add(titulo);
 	}
-	
+
 	public static void main(String[] args) {
 		Treinamento testeDeFogo = new Treinamento("teste de fogo para você");
-		
+
 		/*
 		 * Primeiro passo é vocé implementar a adição de titulos de atividades
-		 * dentro do treinamento. Como você faria? 
+		 * dentro do treinamento. Como você faria?
 		 */
-		
+
 		testeDeFogo.adicionaTituloAtividade("Atividade 1");
 		testeDeFogo.adicionaTituloAtividade("Atividade 2");
 		testeDeFogo.adicionaTituloAtividade("Atividade 3");
 
 		/*
-		 * Uma vez que você implementou a adição de titulos de atividades,
-		 * é necessário que você possibilite a descoberta da posicao do titulo
-		 * da atividade dentro do treinamento. 
+		 * Uma vez que você implementou a adição de titulos de atividades, é
+		 * necessário que você possibilite a descoberta da posicao do titulo da
+		 * atividade dentro do treinamento.
 		 */
-		
-		System.out.println(testeDeFogo.posicaoAtividade("Atividade 4"));
-	}	
+
+		/*
+		 * Agora como você sabe que a posicao inicial é zero ou um ?
+		 */
+		System.out.println(testeDeFogo.posicaoAtividade("Atividade 1")
+				.map(posicao -> posicao.aPartirDeDeterminadoIndice(1)));
+
+	}
 }
