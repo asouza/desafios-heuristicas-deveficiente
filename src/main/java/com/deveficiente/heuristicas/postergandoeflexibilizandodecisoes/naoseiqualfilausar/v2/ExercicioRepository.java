@@ -1,4 +1,4 @@
-package com.deveficiente.heuristicas.postergandoeflexibilizandodecisoes.v2;
+package com.deveficiente.heuristicas.postergandoeflexibilizandodecisoes.naoseiqualfilausar.v2;
 
 import org.springframework.stereotype.Component;
 import org.springframework.test.util.ReflectionTestUtils;
