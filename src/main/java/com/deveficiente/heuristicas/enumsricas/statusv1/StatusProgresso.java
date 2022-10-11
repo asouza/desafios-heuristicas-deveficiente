@@ -29,7 +29,11 @@ public enum StatusProgresso {
 
 	public static StatusProgresso descobre(Treinamento treinamento,
 			List<Resposta> respostas) {
-						
+		
+		/*
+		 * e se as respostas não forem do treinamento?
+		 */
+		
 		StatusProgresso ultimoDescoberto = null;
 		for(StatusProgresso status : StatusProgresso.values()) {
 			if(status.aceita(treinamento,respostas)) {
@@ -37,7 +41,9 @@ public enum StatusProgresso {
 			}
 		}
 		
-		
+		/*
+		 * E se o ultimo descoberto continuar como nulo?
+		 */
 		//aqui tem pegadinha...
 		return ultimoDescoberto;
 	}

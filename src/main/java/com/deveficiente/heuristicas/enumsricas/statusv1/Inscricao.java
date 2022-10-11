@@ -24,6 +24,9 @@ public class Inscricao {
 		 * Como você vai resolver isso aqui?
 		 */
 
+		/*
+		 * E se as respostas não forem do treinamento?
+		 */
 		return StatusProgresso.descobre(this.treinamento,respostas);
 	}
 
