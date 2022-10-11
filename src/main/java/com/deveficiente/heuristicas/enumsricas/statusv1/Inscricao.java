@@ -24,7 +24,7 @@ public class Inscricao {
 		 * Como você vai resolver isso aqui?
 		 */
 
-		return StatusProgresso.NAO_INICIADO;
+		return StatusProgresso.descobre(this.treinamento,respostas);
 	}
 
 	public static void main(String[] args) {
@@ -41,8 +41,10 @@ public class Inscricao {
 		 * Daqui para baixo explore como achar melhor :)
 		 */
 		Resposta resposta1 = new Resposta(atividade1);
+		Resposta resposta2 = new Resposta(atividade2);
+		Resposta resposta3 = new Resposta(atividade3);
 		
-		System.out.println(inscricao.calculaProgresso(List.of(resposta1)));
+		System.out.println(inscricao.calculaProgresso(List.of()));
 	}
 
 }

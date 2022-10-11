@@ -13,6 +13,14 @@ public class Treinamento {
 		this.titulo = titulo;
 		this.atividades = atividades;
 	}
+
+	public boolean estaCompleto(List<Resposta> respostas) {
+		return this.atividades.stream().allMatch(atividade -> {
+			return respostas.stream().anyMatch(resposta -> {
+				return resposta.pertenceAAtividade(atividade);
+			});
+		});
+	}
 	
 	
 
