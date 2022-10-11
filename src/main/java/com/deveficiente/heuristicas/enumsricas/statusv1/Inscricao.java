@@ -12,7 +12,7 @@ public class Inscricao {
 		this.treinamento = treinamento;
 	}
 
-	public BigDecimal calculaProgresso(List<Resposta> respostas) {
+	public StatusProgresso calculaProgresso(List<Resposta> respostas) {
 		/*
 		 * Existem 4 possibilidades de progresso:
 		 * 
@@ -24,11 +24,7 @@ public class Inscricao {
 		 * Como você vai resolver isso aqui?
 		 */
 
-		/*
-		 * Depois de resolver a primeira parte tem mais um ponto que pode ser
-		 * melhorado, só que você precisa perceber sozinho(a).
-		 */
-		return BigDecimal.ZERO;
+		return StatusProgresso.NAO_INICIADO;
 	}
 
 	public static void main(String[] args) {
