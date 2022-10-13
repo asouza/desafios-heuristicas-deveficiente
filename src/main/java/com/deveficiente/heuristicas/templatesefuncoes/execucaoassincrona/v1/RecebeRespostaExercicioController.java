@@ -13,16 +13,23 @@ class RecebeRespostaExercicioController {
 	private ExercicioRepository exercicioRepository;
 	private IntegracaoTypeForm integracaoTypeForm;
 	private ExecutaComTransacao executaComTransacao;
+	private SubmeteRespostaParaAnaliseComAmazonSQS subemeteRespostaParaAnalise;
+	private ExecutaAsync executaAsync;
 
 	public RecebeRespostaExercicioController(
 			RespostaRepository respostaRepository,
 			ExercicioRepository exercicioRepository,
-			IntegracaoTypeForm integracaoTypeForm,ExecutaComTransacao executaComTransacao) {
+			IntegracaoTypeForm integracaoTypeForm,
+			ExecutaComTransacao executaComTransacao,
+			SubmeteRespostaParaAnaliseComAmazonSQS subemeteRespostaParaAnalise,
+			ExecutaAsync executaAsync) {
 		super();
 		this.respostaRepository = respostaRepository;
 		this.exercicioRepository = exercicioRepository;
 		this.integracaoTypeForm = integracaoTypeForm;
 		this.executaComTransacao = executaComTransacao;
+		this.subemeteRespostaParaAnalise = subemeteRespostaParaAnalise;
+		this.executaAsync = executaAsync;
 	}
 
 	@PostMapping("/recebe-resposta/v1")
@@ -47,11 +54,20 @@ class RecebeRespostaExercicioController {
 			 * 
 			 */			
 			
-			return executaComTransacao.comRetorno(() -> {
+			ResponseEntity<?> statusRetorno = executaComTransacao.comRetorno(() -> {
 				System.out.println("Salvando a resposta e definindo retorno");
 				respostaRepository.salva(novaResposta);
 				return ResponseEntity.ok("Resposta salva");				
 			});
+			
+			
+			
+			this.executaAsync.semRetorno(() -> {
+				this.subemeteRespostaParaAnalise.envia(novaResposta);
+			});
+				
+			
+			return statusRetorno;
 		}
 
 		return ResponseEntity.notFound().build();
@@ -63,10 +79,12 @@ class RecebeRespostaExercicioController {
 		ExercicioRepository exercicioRepository = new ExercicioRepository();
 		IntegracaoTypeForm integracaoTypeForm = new IntegracaoTypeForm();
 		ExecutaComTransacao executaComTransacao = new ExecutaComTransacao();
+		SubmeteRespostaParaAnaliseComAmazonSQS subemeteRespostaParaAnalise = new SubmeteRespostaParaAnaliseComAmazonSQS(new AmazonSQS());
+		ExecutaAsync executaAsync = new ExecutaAsync();
 
 		
 		RecebeRespostaExercicioController controller = new RecebeRespostaExercicioController(respostaRepository,
-				exercicioRepository, integracaoTypeForm,executaComTransacao);
+				exercicioRepository, integracaoTypeForm,executaComTransacao,subemeteRespostaParaAnalise,executaAsync);
 		
 		Aluno alunoLogado = new Aluno("teste@deveficiente.com");
 		NovaRespostaRequest request = new NovaRespostaRequest(1l,
