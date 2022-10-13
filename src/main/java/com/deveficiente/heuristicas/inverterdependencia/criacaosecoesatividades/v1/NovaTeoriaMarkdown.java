@@ -1,6 +1,6 @@
 package com.deveficiente.heuristicas.inverterdependencia.criacaosecoesatividades.v1;
 
-public class NovaTeoriaMarkdown {
+public class NovaTeoriaMarkdown implements ProdutorNovaTeoria {
 
 	private final String texto;
 	private final int ordem;

@@ -31,7 +31,7 @@ public class NovaSecaoMarkdown {
 		 * Transformamos?
 		 */
 		
-		return null;
+		return new SecaoAtividades(titulo, novasTeorias, novasAtividades);
 	}
 
 }

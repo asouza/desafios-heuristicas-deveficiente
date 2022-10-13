@@ -10,8 +10,8 @@ public class SecaoAtividades {
 	private SortedSet<Teoria> teorias = new TreeSet<>();
 	private SortedSet<Atividade> atividades = new TreeSet<>();
 
-	public SecaoAtividades(String titulo, List<NovaTeoriaRequest> dadosNovasTeorias,
-			List<NovaAtividadeRequest> dadosNovasAtividades) {
+	public SecaoAtividades(String titulo, List<? extends ProdutorNovaTeoria> dadosNovasTeorias,
+			List<? extends ProdutorNovaAtividade> dadosNovasAtividades) {
 		this.titulo = titulo;
 		
 		dadosNovasTeorias.stream().forEach(novaTeoria -> {

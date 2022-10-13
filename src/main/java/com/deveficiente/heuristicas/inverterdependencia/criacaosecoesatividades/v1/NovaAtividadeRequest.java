@@ -1,6 +1,6 @@
 package com.deveficiente.heuristicas.inverterdependencia.criacaosecoesatividades.v1;
 
-public class NovaAtividadeRequest {
+public class NovaAtividadeRequest implements ProdutorNovaAtividade {
 
 	private final String texto;
 	private final TipoAtividade tipoAtividade;
