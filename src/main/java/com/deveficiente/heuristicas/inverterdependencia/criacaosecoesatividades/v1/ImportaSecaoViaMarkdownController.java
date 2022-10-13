@@ -19,6 +19,8 @@ public class ImportaSecaoViaMarkdownController {
 		novaSecaoMarkdown.adicionaTeoria("titulo1",1);
 		novaSecaoMarkdown.adicionaAtividade("titulo 1",1,TipoAtividade.OBRIGATORIA);
 		
+		novaSecaoMarkdown.toSecao();
+		
 		
 	}
 }
