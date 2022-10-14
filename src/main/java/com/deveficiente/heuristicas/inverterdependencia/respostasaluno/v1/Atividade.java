@@ -14,7 +14,7 @@ public class Atividade implements Comparable<Atividade> {
 		this.titulo = titulo;
 		this.ordem = ordem;
 	}
-	
+
 	public void adicionaResposta(Resposta resposta) {
 		this.respostas.add(resposta);
 	}
@@ -50,6 +50,11 @@ public class Atividade implements Comparable<Atividade> {
 	@Override
 	public int compareTo(Atividade outra) {
 		return this.ordem - outra.ordem;
+	}
+
+	@Override
+	public String toString() {
+		return "Atividade [titulo=" + titulo + ", ordem=" + ordem + "]";
 	}
 
 }
