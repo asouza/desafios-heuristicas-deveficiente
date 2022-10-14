@@ -43,4 +43,8 @@ public class Resposta {
 		return true;
 	}
 
+	public boolean dadaPeloAluno(Aluno algumAluno) {
+		return this.aluno.equals(algumAluno);
+	}
+
 }

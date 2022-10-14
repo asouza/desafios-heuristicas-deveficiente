@@ -14,9 +14,18 @@ public class Atividade implements Comparable<Atividade> {
 		this.titulo = titulo;
 		this.ordem = ordem;
 	}
-	
+
 	public void adicionaResposta(Resposta resposta) {
 		this.respostas.add(resposta);
+	}
+
+	public List<Resposta> getRespostas() {
+		return respostas;
+	}
+
+	@Override
+	public String toString() {
+		return "Atividade [titulo=" + titulo + ", ordem=" + ordem + "]";
 	}
 
 	@Override
@@ -50,6 +59,11 @@ public class Atividade implements Comparable<Atividade> {
 	@Override
 	public int compareTo(Atividade outra) {
 		return this.ordem - outra.ordem;
+	}
+
+	public boolean foiRespondidaPeloAluno(Aluno aluno) {
+		return this.respostas.stream()
+				.anyMatch(resposta -> resposta.dadaPeloAluno(aluno));
 	}
 
 }
