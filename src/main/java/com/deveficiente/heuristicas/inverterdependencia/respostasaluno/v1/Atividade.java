@@ -66,4 +66,8 @@ public class Atividade implements Comparable<Atividade> {
 				.anyMatch(resposta -> resposta.dadaPeloAluno(aluno));
 	}
 
+	public boolean posterior(Atividade algumaAtividade) {
+		return this.ordem > algumaAtividade.ordem;
+	}
+
 }
