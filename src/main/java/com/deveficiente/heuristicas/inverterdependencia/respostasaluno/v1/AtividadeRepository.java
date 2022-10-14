@@ -1,27 +1,31 @@
 package com.deveficiente.heuristicas.inverterdependencia.respostasaluno.v1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RespostaRepository implements CrudRepository<Resposta, Long>{
+public class AtividadeRepository implements CrudRepository<Atividade, Long>{
+	
+	private List<Atividade> atividades = new ArrayList<>();
 
 	@Override
-	public <S extends Resposta> S save(S entity) {
+	public <S extends Atividade> S save(S entity) {
+		this.atividades.add(entity);
+		return entity;
+	}
+
+	@Override
+	public <S extends Atividade> Iterable<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Resposta> Iterable<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<Resposta> findById(Long id) {
+	public Optional<Atividade> findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -33,13 +37,13 @@ public class RespostaRepository implements CrudRepository<Resposta, Long>{
 	}
 
 	@Override
-	public Iterable<Resposta> findAll() {
+	public Iterable<Atividade> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Iterable<Resposta> findAllById(Iterable<Long> ids) {
+	public Iterable<Atividade> findAllById(Iterable<Long> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -57,7 +61,7 @@ public class RespostaRepository implements CrudRepository<Resposta, Long>{
 	}
 
 	@Override
-	public void delete(Resposta entity) {
+	public void delete(Atividade entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -69,7 +73,7 @@ public class RespostaRepository implements CrudRepository<Resposta, Long>{
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Resposta> entities) {
+	public void deleteAll(Iterable<? extends Atividade> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -79,5 +83,7 @@ public class RespostaRepository implements CrudRepository<Resposta, Long>{
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }
