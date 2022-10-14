@@ -19,11 +19,13 @@ public class SecaoAtividades {
 	public Optional<Atividade> proximaAtividadeASerRespondidaPeloAluno(Aluno aluno){
 		/*
 		 * Aqui você tem um potencial problema... Pode ser que tenha milhares de pessoas
-		 * alunas e que elas respondam um monte de atividade. Como fazer esse código de modo
-		 * a já ficar preparado para funcionar num tempo aceitável?
+		 * alunas e que elas respondam um monte de atividade. Preciso que você leve isso em
+		 * consideração na implementação deste método. 
 		 * 
 		 * Lembrando que nós temos a classe RespostaRepository que faz as vias
 		 * de repositório das respostas.
+		 * 
+		 * 
 		 */
 		return Optional.empty();
 	}
