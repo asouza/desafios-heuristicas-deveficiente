@@ -1,4 +1,4 @@
-package com.deveficiente.heuristicas.enumsricas.statusv1;
+package com.deveficiente.heuristicas.enumsricas.status.v1;
 
 import java.math.BigDecimal;
 import java.util.List;

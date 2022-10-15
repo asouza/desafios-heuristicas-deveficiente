@@ -1,4 +1,4 @@
-package com.deveficiente.heuristicas.enumsricas.statusv1;
+package com.deveficiente.heuristicas.enumsricas.status.v1;
 
 public class Atividade {
 
