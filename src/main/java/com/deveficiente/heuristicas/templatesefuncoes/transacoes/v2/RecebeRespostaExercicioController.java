@@ -26,7 +26,6 @@ class RecebeRespostaExercicioController {
 	}
 
 	@PostMapping("/recebe-resposta/v1")
-	@Transactional
 	public ResponseEntity<?> executa(Aluno alunoLogado,
 			NovaRespostaRequest request) {
 
