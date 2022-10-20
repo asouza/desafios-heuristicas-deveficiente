@@ -10,7 +10,7 @@ public class Atividade implements Comparable<Atividade> {
 	private List<Resposta> respostas = new ArrayList<>();
 	private TipoAtividade tipoAtividade;
 
-	public Atividade(String titulo, int ordem,TipoAtividade tipoAtividade) {
+	public Atividade(String titulo, int ordem, TipoAtividade tipoAtividade) {
 		super();
 		this.titulo = titulo;
 		this.ordem = ordem;
@@ -57,6 +57,19 @@ public class Atividade implements Comparable<Atividade> {
 	@Override
 	public String toString() {
 		return "Atividade [titulo=" + titulo + ", ordem=" + ordem + "]";
+	}
+
+	public boolean isObrigatoria() {
+		return this.tipoAtividade.equals(TipoAtividade.OBRIGATORIA);
+	}
+
+	public boolean mesmoTipo(TipoAtividade tipo) {
+		return this.tipoAtividade.equals(tipo);
+	}
+
+	public List<Resposta> respostasDeterminadoAluno(Aluno aluno) {
+		return this.respostas.stream()
+				.filter(resposta -> resposta.pertenceAluno(aluno)).toList();
 	}
 
 }
