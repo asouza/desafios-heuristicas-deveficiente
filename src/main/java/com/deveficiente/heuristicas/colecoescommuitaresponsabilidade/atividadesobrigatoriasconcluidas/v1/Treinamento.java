@@ -7,34 +7,42 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.persistence.PostLoad;
+
 public class Treinamento {
 
 	private String titulo;
 	private SortedSet<SecaoAtividades> secoes = new TreeSet<>();
+	private transient TodasAtividades todasAtividades;
 
 	public Treinamento(String titulo, List<SecaoAtividades> secoes) {
 		super();
 		this.titulo = titulo;
 		secoes.forEach(this.secoes::add);
+		this.todasAtividades = new TodasAtividades(this.secoes);
+	}
+
+	/**
+	 * Idealmente este método deve ser chamado apenas pela implementação da 
+	 * JPA que estiver sendo utilizada. 
+	 */
+	@PostLoad
+	void postLoad() {
+		this.todasAtividades = new TodasAtividades(secoes);
 	}
 
 	public int calculaQuantidadeAtividadesObrigatorias() {
-		return this.secoes.stream().mapToInt(
-				secao -> secao.quantidadeAtividadesObrigatorias())
-				.sum();
+		return this.todasAtividades.quantidadeObrigatorias();
+
 	}
 
 	public int calculaQuantasObrigatoriasForamFinalizadas(Aluno aluno) {
-		return (int) this.secoes.stream().flatMap(
-				secao -> secao.respostasDeterminadoAluno(aluno).stream())
-				.filter(resposta -> resposta.isObrigatoria())
-				.count();
+		return this.todasAtividades.calculaFinalizadasPorAluno(aluno);
 	}
 
 	public BigDecimal calculaPercentualDeAtividadesObrigatorias() {
-		int quantidadeObrigatorias = calculaQuantidadeAtividadesObrigatorias();
-		int totalAtividades = this.secoes.stream()
-				.mapToInt(secao -> secao.totalAtividades()).sum();
+		int quantidadeObrigatorias = this.todasAtividades.quantidadeObrigatorias();
+		int totalAtividades = this.todasAtividades.total();
 
 		return new BigDecimal(quantidadeObrigatorias).divide(
 				new BigDecimal(totalAtividades), 2, RoundingMode.HALF_EVEN);
