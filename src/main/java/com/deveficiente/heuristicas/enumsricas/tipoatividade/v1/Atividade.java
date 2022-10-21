@@ -60,7 +60,7 @@ public class Atividade implements Comparable<Atividade> {
 	}
 
 	public boolean isObrigatoria() {
-		return this.tipoAtividade.equals(TipoAtividade.CONVENCIONAL);
+		return this.tipoAtividade.isObrigatoria();
 	}
 
 	public boolean mesmoTipo(TipoAtividade tipo) {
