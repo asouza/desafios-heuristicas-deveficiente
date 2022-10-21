@@ -14,7 +14,7 @@ public class Inscricao {
 
 	public StatusProgresso calculaProgresso(List<Resposta> respostas) {
 		/*
-		 * Existem 4 possibilidades de progresso:
+		 * Existem 3 possibilidades de progresso:
 		 * 
 		 * 1) Não começou 2) Começou 3) Finalizou
 		 * 
