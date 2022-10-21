@@ -26,6 +26,10 @@ public class Treinamento {
 		return 0;
 	}
 	
+	public int calculaQuantidadeAtividadesNaoObrigatorias() {
+		return 0;
+	}
+	
 	public BigDecimal calculaPercentualDeAtividadesObrigatorias() {
 		return BigDecimal.ZERO;
 	}
