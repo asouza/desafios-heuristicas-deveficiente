@@ -59,7 +59,7 @@ public class Inscricao {
 		 * Como você vai resolver isso aqui?
 		 */
 
-		return StatusProgresso.NAO_INICIADO;
+		return StatusProgresso.descobre(this);
 	}
 
 	public static void main(String[] args) {
@@ -74,9 +74,23 @@ public class Inscricao {
 
 		Inscricao inscricao = new Inscricao(aluno,treinamento);
 		
-		//faça o código para adicionar uma resposta numa inscricao
+		inscricao.adicionaResposta(atividade1);
+		inscricao.adicionaResposta(atividade2);
+		inscricao.adicionaResposta(atividade3);
 
 		System.out.println(inscricao.calculaProgresso());
+	}
+
+	public void adicionaResposta(Atividade atividade) {
+		this.respostas.add(new Resposta(this, atividade));
+	}
+
+	public boolean jaRespondeu() {
+		return !this.respostas.isEmpty();
+	}
+
+	public boolean respondeuTudo() {
+		return this.treinamento.estaTodoRespondido(respostas);
 	}
 
 }

@@ -39,4 +39,11 @@ public class Treinamento {
 		return true;
 	}
 
+	public boolean estaTodoRespondido(List<Resposta> respostas) {
+		return this.atividades.stream().allMatch(atividade -> {
+			return respostas.stream().anyMatch(
+					resposta -> resposta.pertenceAAtividade(atividade));
+		});
+	}
+
 }
