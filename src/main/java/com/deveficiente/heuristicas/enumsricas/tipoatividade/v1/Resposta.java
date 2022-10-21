@@ -43,4 +43,12 @@ public class Resposta {
 		return true;
 	}
 
+	public boolean pertenceAluno(Aluno algumAluno) {
+		return this.aluno.equals(algumAluno);
+	}
+
+	public boolean isObrigatoria() {
+		return this.atividade.isObrigatoria();
+	}
+
 }
