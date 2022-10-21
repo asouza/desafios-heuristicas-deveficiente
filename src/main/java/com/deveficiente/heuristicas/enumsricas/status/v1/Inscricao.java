@@ -1,18 +1,53 @@
 package com.deveficiente.heuristicas.enumsricas.status.v1;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Inscricao {
 
 	private Treinamento treinamento;
+	private Aluno aluno;
+	private List<Resposta> respostas = new ArrayList<>();
 
-	public Inscricao(Treinamento treinamento) {
+	public Inscricao(Aluno aluno, Treinamento treinamento) {
 		super();
+		this.aluno = aluno;
 		this.treinamento = treinamento;
 	}
 
-	public StatusProgresso calculaProgresso(List<Resposta> respostas) {
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
+		result = prime * result
+				+ ((treinamento == null) ? 0 : treinamento.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Inscricao other = (Inscricao) obj;
+		if (aluno == null) {
+			if (other.aluno != null)
+				return false;
+		} else if (!aluno.equals(other.aluno))
+			return false;
+		if (treinamento == null) {
+			if (other.treinamento != null)
+				return false;
+		} else if (!treinamento.equals(other.treinamento))
+			return false;
+		return true;
+	}
+
+	public StatusProgresso calculaProgresso() {
 		/*
 		 * Existem 3 possibilidades de progresso:
 		 * 
@@ -31,18 +66,17 @@ public class Inscricao {
 		Atividade atividade1 = new Atividade("atividade 1");
 		Atividade atividade2 = new Atividade("atividade 2");
 		Atividade atividade3 = new Atividade("atividade 3");
+
+		Treinamento treinamento = new Treinamento("titulo",
+				List.of(atividade1, atividade2, atividade3));
 		
-		Treinamento treinamento = new Treinamento("titulo", List.of(atividade1,
-				atividade2, atividade3));
+		Aluno aluno = new Aluno("pessoa@deveficiente.com");
+
+		Inscricao inscricao = new Inscricao(aluno,treinamento);
 		
-		Inscricao inscricao = new Inscricao(treinamento);
-		
-		/*
-		 * Daqui para baixo explore como achar melhor :)
-		 */
-		Resposta resposta1 = new Resposta(atividade1);
-		
-		System.out.println(inscricao.calculaProgresso(List.of(resposta1)));
+		//faça o código para adicionar uma resposta numa inscricao
+
+		System.out.println(inscricao.calculaProgresso());
 	}
 
 }

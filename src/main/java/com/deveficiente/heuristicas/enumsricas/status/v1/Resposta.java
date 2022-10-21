@@ -3,9 +3,11 @@ package com.deveficiente.heuristicas.enumsricas.status.v1;
 public class Resposta {
 
 	private Atividade atividade;
+	private Inscricao inscricao;
 
-	public Resposta(Atividade atividade) {
+	public Resposta(Inscricao inscricao, Atividade atividade) {
 		super();
+		this.inscricao = inscricao;
 		this.atividade = atividade;
 	}
 
@@ -15,6 +17,8 @@ public class Resposta {
 		int result = 1;
 		result = prime * result
 				+ ((atividade == null) ? 0 : atividade.hashCode());
+		result = prime * result
+				+ ((inscricao == null) ? 0 : inscricao.hashCode());
 		return result;
 	}
 
@@ -32,9 +36,16 @@ public class Resposta {
 				return false;
 		} else if (!atividade.equals(other.atividade))
 			return false;
+		if (inscricao == null) {
+			if (other.inscricao != null)
+				return false;
+		} else if (!inscricao.equals(other.inscricao))
+			return false;
 		return true;
 	}
 	
+	
+
 	
 
 }
